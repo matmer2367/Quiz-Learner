@@ -1,11 +1,19 @@
 from typing import List
+import random
 
 class QuizData:
     def __init__(self, data: dict):
         self.data = data
+        self.default_question_array_order = self.get_questions_list().copy()
 
     def __str__(self):
         return self.data.__str__()
+
+    def shuffle_data(self):
+        random.shuffle(self.get_questions_list())
+
+    def reset_data_order(self):
+        self.data["questions"] = self.default_question_array_order.copy()
 
     def get_name(self) -> str:
         return self.data["name"]

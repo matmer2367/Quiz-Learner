@@ -21,6 +21,10 @@ class QuizManager:
         if self.current_quiz_selector >= self.get_amount_of_quizes():
             self.current_quiz_selector = self.get_amount_of_quizes()-1
 
+    def reset_counters(self):
+        self.reset_question_counter()
+        self.reset_quiz_counter()
+
     def reset_question_counter(self):
         self.current_question_selector = 0
 
@@ -48,6 +52,12 @@ class QuizManager:
         self.current_question_selector += 1
         if self.current_question_selector >= self.get_amount_of_questions_current_quiz():
             self.current_question_selector = self.get_amount_of_questions_current_quiz()-1
+
+    def shuffle_current_quiz(self):
+        self.__get_quiz_data().shuffle_data()
+
+    def reset_current_quiz_order(self):
+        self.__get_quiz_data().reset_data_order()
 
     def get_current_question(self) -> str:
         return self.__get_quiz_data().get_questions_string(self.current_question_selector)
